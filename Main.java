@@ -23,6 +23,7 @@ public class Main {
         int szerokosc = (850-40)/3;
         int wysokosc = 100;
         //Tworzenie okna
+        Color czerwony = new Color(255,109,102);
 
         okno kcal = new okno("Liczenie Kcal");
 
@@ -109,7 +110,7 @@ public class Main {
                 }
                 catch(NumberFormatException f)
                 {
-                    bialko_text.setBackground(Color.getHSBColor(255,109,102));
+                    bialko_text.setBackground(czerwony);
                     b = false;
                 }
 
@@ -123,7 +124,7 @@ public class Main {
                 }
                 catch(NumberFormatException f)
                 {
-                    tluszcze_text.setBackground(Color.getHSBColor(255,109,102));
+                    tluszcze_text.setBackground(czerwony);
                     t = false;
 
                 }
@@ -173,10 +174,10 @@ public class Main {
                 }
                 else if ((b == true & w==true & t==true & kcal==true))
                 {
-                    bialko_text.setBackground(Color.getHSBColor(255,109,102));
-                    wegle_text.setBackground(Color.getHSBColor(255,109,102));
-                    tluszcze_text.setBackground(Color.getHSBColor(255,109,102));
-                    kcal_text.setBackground(Color.getHSBColor(255,109,102));
+                    bialko_text.setBackground(czerwony);
+                    wegle_text.setBackground(czerwony);
+                    tluszcze_text.setBackground(czerwony);
+                    kcal_text.setBackground(czerwony);
                 }
 
             }
