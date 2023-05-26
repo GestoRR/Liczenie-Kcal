@@ -23,8 +23,7 @@ public class Main {
         int szerokosc = (850-40)/3;
         int wysokosc = 100;
         //Tworzenie okna
-        Color czerwony = new Color(255,109,102);
-
+        Color czerwony = Color.getHSBColor(255, 109, 102);
         okno kcal = new okno("Liczenie Kcal");
 
         //Tworzenie panelów
@@ -139,7 +138,7 @@ public class Main {
                 }
                 catch(NumberFormatException f)
                 {
-                    wegle_text.setBackground(Color.getHSBColor(255,109,102));
+                    wegle_text.setBackground(czerwony);
                     w = false;
                 }
 
@@ -150,7 +149,7 @@ public class Main {
                     kcal_text.setBackground(Color.white);
                     kcal = true;}
                 catch(NumberFormatException f){
-                    kcal_text.setBackground(Color.getHSBColor(255,109,102));
+                    kcal_text.setBackground(czerwony);
                     kcal = false;
                 }
 
