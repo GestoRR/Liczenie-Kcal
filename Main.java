@@ -13,11 +13,45 @@ class okno extends JFrame{
         setLayout(new FlowLayout(FlowLayout.CENTER));
 
     }
-
-
-
+    
 }
 public class Main {
+    //Metoda do robienia try i catch
+    public static boolean metoda_try(JTextField pole)
+    {
+        String nazwa = pole.getText();
+        double wartosc=0.0;
+        boolean logika;
+        try{
+            wartosc = Double.valueOf(nazwa);
+            logika = true;
+            wynik(logika,pole);
+        }
+        catch(NumberFormatException f)
+        {
+            logika = false;
+            wynik(logika,pole);
+        }
+        return logika;
+    }
+
+    public static double wynik(boolean logika, JTextField pole)
+    {
+        double wartosc = 0.0;
+        if (logika == true)
+        {
+            wartosc = Double.valueOf(pole.getText());
+            pole.setBackground(Color.white);
+        }
+        else
+        {
+            pole.setBackground(Color.getHSBColor(255,109,102));
+        }
+        return wartosc;
+    }
+
+
+
     public static void main(String[] args) {
 
         int szerokosc = (850-40)/3;
@@ -29,25 +63,20 @@ public class Main {
         //Tworzenie panelów
 
         JPanel panel_bialko = new JPanel(new GridLayout(2,1));
-        //panel_bialko.setBackground(Color.pink);
         panel_bialko.setPreferredSize(new Dimension(szerokosc,wysokosc));
 
 
         JPanel panel_tluszcze = new JPanel(new GridLayout(2,1));
-        //panel_tluszcze.setBackground(Color.yellow);
         panel_tluszcze.setPreferredSize(new Dimension(szerokosc,wysokosc));
 
         JPanel panel_wegle = new JPanel(new GridLayout(2,1));
-        //panel_wegle.setBackground(Color.blue);
         panel_wegle.setPreferredSize(new Dimension(szerokosc,wysokosc));
 
         JPanel panel_kcal = new JPanel(new GridLayout(2,1));
-        //panel_kcal.setBackground(Color.gray);
         panel_kcal.setPreferredSize(new Dimension(szerokosc,wysokosc));
 
         JPanel panel_oblicz = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panel_oblicz.setPreferredSize(new Dimension(szerokosc*2,wysokosc*2));
-        //panel_oblicz.setBackground(Color.cyan);
         panel_oblicz.setBorder(BorderFactory.createEmptyBorder(40,0,0,0));
 
 
@@ -95,63 +124,28 @@ public class Main {
         przycisk_reset.setPreferredSize(new Dimension(250,90));
         przycisk_reset.setFont(new Font("Olek",Font.BOLD,16));
 
+
+
+
         przycisk_oblicz.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String bialko_string;
-                Double bialko_double=0.0;
                 boolean b,w,t,kcal;
-                bialko_string = bialko_text.getText();
 
-                try{
-                    bialko_double = Double.valueOf(bialko_string);
-                    bialko_text.setBackground(Color.white);
-                    b = true;
-                }
-                catch(NumberFormatException f)
-                {
-                    bialko_text.setBackground(czerwony);
-                    b = false;
-                }
+                Double bialko_double=0.0;
+                b = metoda_try(bialko_text);
+                bialko_double = wynik(b,bialko_text);
 
-                String tluszcze_string;
                 Double tluszcze_double=0.0;
-                tluszcze_string = tluszcze_text.getText();
-                try{
-                    tluszcze_double = Double.valueOf(tluszcze_string);
-                    tluszcze_text.setBackground(Color.white);
-                    t = true;
-                }
-                catch(NumberFormatException f)
-                {
-                    tluszcze_text.setBackground(czerwony);
-                    t = false;
+                t = metoda_try(tluszcze_text);
+                tluszcze_double = wynik(t,tluszcze_text);
 
-                }
-
-                String weglowodany_string;
                 Double weglowodany_double=0.0;
-                weglowodany_string = wegle_text.getText();
-                try{
-                    weglowodany_double = Double.valueOf(weglowodany_string);
-                    wegle_text.setBackground(Color.white);
-                    w = true;
-                }
-                catch(NumberFormatException f)
-                {
-                    wegle_text.setBackground(czerwony);
-                    w = false;
-                }
+                w = metoda_try(wegle_text);
+                weglowodany_double = wynik(w,wegle_text);
 
-                String kcal_string;
                 Double kcal_double=0.0;
-                kcal_string = kcal_text.getText();
-                try{kcal_double = Double.valueOf(kcal_string);
-                    kcal_text.setBackground(Color.white);
-                    kcal = true;}
-                catch(NumberFormatException f){
-                    kcal_text.setBackground(czerwony);
-                    kcal = false;
-                }
+                kcal = metoda_try(kcal_text);
+                kcal_double = wynik(kcal,kcal_text);
 
                 if ((b == true & w==true & t==true & kcal==false)) {
                     kcal_text.setText(String.format("%.2f",(bialko_double*4 + weglowodany_double *4 + tluszcze_double*9)));
